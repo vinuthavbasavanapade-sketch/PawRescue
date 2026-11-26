@@ -1,0 +1,350 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #fffaf5;
+    color: #333;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6%;
+    background: white;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #27834e;
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #27834e;
+}
+
+.donate-btn {
+    background: #27834e;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 75px 8%;
+    gap: 50px;
+    background: #f0f7ef;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.tagline,
+.section-tag {
+    color: #27834e;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    line-height: 1.2;
+    margin: 20px 0;
+    color: #183e2b;
+}
+
+.hero p {
+    color: #666;
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 520px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.btn,
+.secondary-btn {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn {
+    background: #27834e;
+    color: white;
+}
+
+.btn:hover,
+.donate-btn:hover {
+    background: #185c35;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    border: 2px solid #27834e;
+    color: #27834e;
+}
+
+.secondary-btn:hover {
+    background: #27834e;
+    color: white;
+}
+
+.hero-image {
+    flex: 1;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* About */
+.about {
+    text-align: center;
+    padding: 85px 10%;
+}
+
+.about h2,
+.services h2,
+.contact h2 {
+    font-size: 34px;
+    color: #183e2b;
+    margin: 15px 0;
+}
+
+.about p {
+    max-width: 850px;
+    margin: 20px auto;
+    line-height: 1.9;
+    color: #666;
+    font-size: 16px;
+}
+
+.about-points {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.about-points div {
+    background: #e8f3e9;
+    padding: 16px 24px;
+    border-radius: 30px;
+    color: #27834e;
+    font-weight: bold;
+}
+
+/* Services */
+.services {
+    padding: 80px 7%;
+    text-align: center;
+    background: #f5f8f3;
+}
+
+.section-description {
+    color: #777;
+    margin: 15px 0 40px;
+}
+
+.service-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    transition: 0.3s;
+    text-align: left;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.service-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 22px;
+}
+
+.service-card h3 {
+    color: #183e2b;
+    margin-bottom: 12px;
+    font-size: 19px;
+}
+
+.service-card p {
+    color: #777;
+    line-height: 1.7;
+    font-size: 14px;
+    min-height: 70px;
+}
+
+.service-btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 11px 18px;
+    background: #27834e;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.service-btn:hover {
+    background: #185c35;
+}
+
+/* Call to Action */
+.cta {
+    background: #1f6b40;
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.cta h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+.cta .btn {
+    background: white;
+    color: #27834e;
+}
+
+/* Contact */
+.contact {
+    text-align: center;
+    padding: 75px 20px;
+    line-height: 2;
+}
+
+.contact p {
+    color: #666;
+}
+
+/* Footer */
+footer {
+    background: #183e2b;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    line-height: 2;
+}
+
+footer .logo {
+    color: white;
+    margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+    .service-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 50px 7%;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero-image img {
+        height: 280px;
+    }
+
+    .service-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about h2,
+    .services h2,
+    .contact h2 {
+        font-size: 27px;
+    }
+}

@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Animal | PawRescue</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🐾 PawRescue</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/report">Report Animal</a>
+        </nav>
+    </header>
+
+    <section class="main-content">
+        <div class="about">
+            <h2>🐾 Report an Animal</h2>
+            <p>Help us rescue injured and abandoned street animals.</p>
+
+            <form action="/report" method="post">
+                <p>Animal Type</p>
+                <input type="text" name="animalType"
+                       placeholder="Dog, Cat, etc." required>
+
+                <p>Location</p>
+                <input type="text" name="location"
+                       placeholder="Enter the animal's location" required>
+
+                <p>Description</p>
+                <textarea name="description"
+                          placeholder="Describe the animal's condition"
+                          required></textarea>
+
+                <br><br>
+                <button type="submit" class="btn">Submit Report</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 PawRescue | Care for Every Paw ❤️</p>
+    </footer>
+
+</body>
+</html>

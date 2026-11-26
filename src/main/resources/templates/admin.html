@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | PawRescue</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #fffaf3; color: #333; }
+        header { background: white; padding: 20px 6%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; box-shadow: 0 2px 10px #00000012; }
+        header h1 { color: #e87932; }
+        nav { display: flex; gap: 20px; flex-wrap: wrap; }
+        nav a { color: #444; text-decoration: none; font-weight: bold; }
+        nav a:hover { color: #e87932; }
+        .welcome { padding: 40px 6%; background: #ffead8; }
+        .welcome h2 { color: #a94e1c; font-size: 30px; margin-bottom: 10px; }
+        .dashboard { padding: 40px 6%; }
+        .dashboard h2 { color: #a94e1c; margin-bottom: 25px; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px #00000012; border-left: 5px solid #e87932; }
+        .card h3 { color: #666; font-size: 17px; margin-bottom: 15px; }
+        .card p { font-size: 30px; font-weight: bold; color: #a94e1c; }
+        .details { margin-top: 40px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px #00000012; }
+        .details h2 { color: #a94e1c; margin-bottom: 15px; }
+        .details p { line-height: 1.8; color: #666; }
+        .volunteer-item, .report-item { padding: 15px 0; border-bottom: 1px solid #eee; }
+        button { background: #e87932; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #a94e1c; }
+        select { padding: 9px; border: 1px solid #ddd; border-radius: 5px; }
+        footer { margin-top: 30px; padding: 25px; text-align: center; background: #333; color: white; }
+        @media (max-width: 600px) { header { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🐾 PawRescue Admin</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/report">Reports</a>
+        <a href="/volunteer">Volunteers</a>
+        <a href="/adoption">Adoption</a>
+    </nav>
+</header>
+
+<section class="welcome">
+    <h2>Welcome, Administrator! 👋</h2>
+    <p>Manage animal rescue activities and help street animals find loving homes.</p>
+</section>
+
+<section class="dashboard">
+    <h2>Dashboard Overview</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>🐶 Animal Reports</h3>
+            <p th:text="${#lists.size(reports)}">0</p>
+        </div>
+        <div class="card">
+            <h3>🤝 Volunteers</h3>
+            <p th:text="${#lists.size(volunteers)}">0</p>
+        </div>
+        <div class="card">
+            <h3>❤️ Adoption Requests</h3>
+            <p th:text="${#lists.size(adoptionRequests)}">0</p>
+        </div>
+        <div class="card">
+            <h3>📋 Pending Requests</h3>
+            <p th:text="${#lists.size(adoptionRequests.?[status == 'Pending'])}">0</p>
+        </div>
+    </div>
+
+    <div class="details">
+        <h2>Animal Reports</h2>
+        <p th:if="${#lists.isEmpty(reports)}">No animal reports have been submitted yet.</p>
+
+        <div th:each="report : ${reports}" class="report-item">
+            <p><strong>Animal Type:</strong> <span th:text="${report.animalType}"></span></p>
+            <p><strong>Location:</strong> <span th:text="${report.location}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${report.description}"></span></p>
+            <p><strong>Current Status:</strong> <span th:text="${report.status}"></span></p>
+
+            <form th:action="@{/admin/update-status}" method="post">
+                <input type="hidden" name="id" th:value="${report.id}">
+                <select name="status">
+                    <option value="Pending">Pending</option>
+                    <option value="Rescued">Rescued</option>
+                    <option value="Under Treatment">Under Treatment</option>
+                </select>
+                <button type="submit">Update Status</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="details">
+        <h2>🤝 Registered Volunteers</h2>
+        <p th:if="${#lists.isEmpty(volunteers)}">No volunteers have registered yet.</p>
+
+        <div th:each="volunteer : ${volunteers}" class="volunteer-item">
+            <p><strong>Name:</strong> <span th:text="${volunteer.name}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${volunteer.email}"></span></p>
+            <p><strong>Phone:</strong> <span th:text="${volunteer.phone}"></span></p>
+            <p><strong>Location:</strong> <span th:text="${volunteer.location}"></span></p>
+            <p><strong>Availability:</strong>
+                <span th:text="${volunteer.available ? 'Available' : 'Not Available'}"></span>
+            </p>
+        </div>
+    </div>
+
+    <div class="details">
+        <h2>❤️ Adoption Requests</h2>
+        <p th:if="${#lists.isEmpty(adoptionRequests)}">No adoption requests yet.</p>
+
+        <div th:each="request : ${adoptionRequests}" class="volunteer-item">
+            <p><strong>Adopter Name:</strong> <span th:text="${request.adopterName}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${request.email}"></span></p>
+            <p><strong>Animal Name:</strong> <span th:text="${request.animalName}"></span></p>
+            <p><strong>Current Status:</strong> <span th:text="${request.status}"></span></p>
+
+            <form th:action="@{/admin/adoption/update-status}" method="post">
+                <input type="hidden" name="adoptionId" th:value="${request.adoptionId}">
+
+                <p><strong>Update Status:</strong></p>
+                <select name="status">
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+
+                <button type="submit">Update Status</button>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 PawRescue | Admin Dashboard</p>
+</footer>
+
+</body>
+</html>

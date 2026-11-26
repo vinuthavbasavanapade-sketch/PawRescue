@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Adoption Status | PawRescue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f8f4;
+            margin: 0;
+            padding: 30px;
+            text-align: center;
+        }
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #cccccc;
+        }
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            padding: 12px 22px;
+            background: #25834b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .result {
+            background: #eef7ef;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        a {
+            color: #25834b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🐾 PawRescue</h1>
+    <h2>Check Your Adoption Status ❤️</h2>
+
+    <form action="/check-adoption" method="post">
+        <input type="email" name="email"
+               placeholder="Enter your registered email"
+               required>
+        <br>
+        <button type="submit">Check Status</button>
+    </form>
+
+    <div th:if="${requests != null}">
+        <div th:if="${#lists.isEmpty(requests)}">
+            <p>No adoption requests found for this email.</p>
+        </div>
+
+        <div th:each="request : ${requests}" class="result">
+            <p><strong>Adopter:</strong>
+                <span th:text="${request.adopterName}"></span>
+            </p>
+            <p><strong>Animal:</strong>
+                <span th:text="${request.animalName}"></span>
+            </p>
+            <p><strong>Status:</strong>
+                <span th:text="${request.status}"></span>
+            </p>
+        </div>
+    </div>
+
+    <p><a href="/">Back to Home</a></p>
+
+</div>
+
+</body>
+</html>
